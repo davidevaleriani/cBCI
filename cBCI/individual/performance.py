@@ -1,6 +1,8 @@
 import numpy as np
+from typing import List
 
-def metacognitive_accuracy(accuracy, confidence):
+
+def metacognitive_accuracy(accuracy: List, confidence: List) -> List:
     """Compute metacognitive accuracy of each trial as:
     100*(1-abs(accuracy-confidence))
 
@@ -9,29 +11,26 @@ def metacognitive_accuracy(accuracy, confidence):
 
     Parameters
     ----------
-    accuracy : 1D array or int
-        If int, 1 if the decision is correct, 0 otherwise. If array, sequence
-        of objective accuracy (1 if correct, 0 otherwise).
-    confidence : 1D array or float
+    accuracy : list
+        Sequence of objective accuracy (1 if correct, 0 otherwise) of each trial.
+    confidence : list
         Confidence measure associated to the decision. Should be the same number
         of elements of accuracy and all values in range 0-1.
 
     Returns
     -------
-    1D array or float
-        Metacognitive accuracy or array of metacognitive accuracies, in range
-        0-100.
+    list
+        Sequence of metacognitive accuracies for each trial, in range 0-100.
 
     """
     if np.logical_xor(isinstance(accuracy, int), isinstance(confidence, float)):
         raise ValueError("Accuracy should be int, confidence should be float")
     if np.any(np.logical_or(confidence > 1, confidence < 0)):
         raise ValueError("Confidence values should be within range 0-1")
-    accuracy = np.array([accuracy]).flatten()
-    confidence = np.array([confidence]).flatten()
+    accuracy = np.array(accuracy)
+    confidence = np.array(confidence)
     if len(accuracy) != len(confidence):
         raise ValueError("Both accuracy and confidence should have the same number of values")
+    # Calculate metacognitive accuracy
     mac = 100*(1-abs(accuracy-confidence))
-    if len(mac) == 1:
-        return mac[0]
     return mac

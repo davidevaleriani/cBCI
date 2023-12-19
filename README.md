@@ -12,7 +12,10 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [M
 git clone https://github.com/davidevaleriani/cBCI.git
 
 # Create a new conda environment
-conda create --name bci python=3.9.6
+conda create --name bci python=3.12
+
+# Install Poetry
+pipx install poetry
 
 # Activate environment
 conda activate bci
@@ -20,8 +23,8 @@ conda activate bci
 # Go into the repository
 cd cBCI
 
-# Install using pip
-pip install .
+# Install dependencies
+poetry install
 ```
 
 # Examples and Tutorials
@@ -40,7 +43,7 @@ Examples of studies employing this package and techniques are:
 
 The package is still under development and an associated publication will follow. In the meantime, you can cite:
 
-> Valeriani, D., O'Flynn, L. C., Worthley, A., Hamzehei Sichani, A., & Simonyan, K. (2022). Multimodal collaborative brain-computer interfaces aid human-machine team decision-making in a pandemic scenario. Journal of Neural Engineering.
+> Valeriani, D., O'Flynn, L. C., Worthley, A., Hamzehei Sichani, A., & Simonyan, K. (2022). Multimodal collaborative brain-computer interfaces aid human-machine team decision-making in a pandemic scenario. Journal of Neural Engineering, 19(5), 056036.
 
 # License
 
